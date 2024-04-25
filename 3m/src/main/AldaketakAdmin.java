@@ -679,8 +679,7 @@ public class AldaketakAdmin extends JFrame {
 		panel_3.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Gorde");
-<<<<<<< HEAD
-=======
+
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
@@ -713,7 +712,6 @@ public class AldaketakAdmin extends JFrame {
 			    }
 			}
 		});
->>>>>>> 8a93da9b68f28a1898d7bda2be83ee5d56e9ed25
 		btnNewButton_1.setBounds(698, 33, 85, 21);
 		panel_3.add(btnNewButton_1);
 		
@@ -1033,9 +1031,5 @@ public class AldaketakAdmin extends JFrame {
 		});
 	}
 
-	private static class __Tmp {
-		private static void __tmp() {
-			  javax.swing.JPanel __wbp_panel = new javax.swing.JPanel();
-		}
-	}
+	
 }

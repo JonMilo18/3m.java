@@ -96,7 +96,7 @@ public class Login extends JFrame {
                 oforma.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(534, 553, 155, 36);
+		btnNewButton.setBounds(457, 553, 157, 36);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -132,5 +132,17 @@ public class Login extends JFrame {
 		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Jon\\Downloads\\3M (1).png"));
 		lblNewLabel_2.setBounds(457, 10, 375, 313);
 		contentPane.add(lblNewLabel_2);
+		
+		JButton btnNewButton_1 = new JButton("Garbitu");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText("");
+				passwordField.setText("");
+				
+			}
+		});
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnNewButton_1.setBounds(624, 553, 157, 36);
+		contentPane.add(btnNewButton_1);
 	}
 }

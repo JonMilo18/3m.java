@@ -9,15 +9,23 @@ import java.awt.Color;
 import javax.swing.JTabbedPane;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class AltakAdmin extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	protected static final String URL = "jdbc:mysql://localhost:3306/3m";
+    protected static final String USER = "root";
+    protected static final String PASSWORD = "1WMG2023";
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -55,6 +63,7 @@ public class AltakAdmin extends JFrame {
 	private JTextField textField_24;
 	private JTextField textField_25;
 	private JTextField textField_30;
+	private JTextField textField_36;
 
 	/**
 	 * Launch the application.
@@ -204,6 +213,56 @@ public class AltakAdmin extends JFrame {
 		textField_11.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Alta eman");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    Connection conexion = null;
+			    PreparedStatement preparedStatement = null;
+ 
+			    try {
+			        // Establecer la conexión
+			        conexion = DriverManager.getConnection(URL, USER, PASSWORD);
+ 
+			        // Crear la consulta SQL con un PreparedStatement para evitar inyecciones SQL
+			        String sql = "INSERT INTO Bezeroak (izena, abizena, helbidea, korreoa, telefonoa, kontuKorrontea, erabiltzailea, pasahitza, jaiotzeData, lanPostua) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			        
+			        preparedStatement = conexion.prepareStatement(sql);
+			        
+			        // Establecer los parámetros de la consulta
+			        preparedStatement.setString(1, textField.getText());
+			        preparedStatement.setString(2, textField_1.getText());
+			        preparedStatement.setString(3, textField_2.getText());
+			        preparedStatement.setString(4, textField_5.getText());
+			        preparedStatement.setString(5, textField_6.getText());
+			        preparedStatement.setString(6, textField_7.getText());
+			        preparedStatement.setString(7, textField_8.getText());
+			        preparedStatement.setString(8, textField_9.getText());
+			        preparedStatement.setString(9, textField_10.getText());
+			        preparedStatement.setString(10, textField_11.getText());
+ 
+			        // Ejecutar la consulta SQL
+			        int rowsAffected = preparedStatement.executeUpdate();
+			        
+			        if (rowsAffected > 0) {
+			            JOptionPane.showMessageDialog(null, "DATUAK GORDE DIRA.", "Verificación", JOptionPane.INFORMATION_MESSAGE);
+			        }
+ 
+			    } catch (SQLException ex) {
+			        ex.printStackTrace();
+			    } finally {
+			        // Cerrar la conexión y el preparedStatement en el bloque finally
+			        try {
+			            if (preparedStatement != null) {
+			                preparedStatement.close();
+			            }
+			            if (conexion != null) {
+			                conexion.close();
+			            }
+			        } catch (SQLException ex) {
+			            ex.printStackTrace();
+			        }
+			    }
+			}
+		});
 		btnNewButton.setBounds(20, 210, 93, 21);
 		panel_1.add(btnNewButton);
 		
@@ -369,6 +428,58 @@ public class AltakAdmin extends JFrame {
 		textField_25.setColumns(10);
 		
 		JButton btnNewButton_4 = new JButton("Alta eman");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    Connection conexion = null;
+			    PreparedStatement preparedStatement = null;
+	 
+			    try {
+			        // Establecer la conexión
+			        conexion = DriverManager.getConnection(URL, USER, PASSWORD);
+	 
+			        // Crear la consulta SQL con un PreparedStatement para evitar inyecciones SQL
+			        String sql = "INSERT INTO langileak (nan, izena, abizena, herria, helbidea, kontuKorrontea, korreoa, telefonoa, erabiltzailea, pasahitza, jaiotzeData, lanPostua) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			        
+			        preparedStatement = conexion.prepareStatement(sql);
+			        
+			        // Establecer los parámetros de la consulta
+			        preparedStatement.setString(1, textField_12.getText());//nan
+			        preparedStatement.setString(2, textField_13.getText());//izena
+			        preparedStatement.setString(3, textField_14.getText());//abizena
+			        preparedStatement.setString(4, textField_15.getText());//herria
+			        preparedStatement.setString(5, textField_16.getText());//helbidea
+			        preparedStatement.setString(6, textField_17.getText());//kontu korrontea
+			        preparedStatement.setString(7, textField_18.getText());//korreoa
+			        preparedStatement.setString(8, textField_19.getText());//telefonoa
+			        preparedStatement.setString(9, textField_20.getText());//erabiltzailea
+			        preparedStatement.setString(10, textField_21.getText());//pasahitza
+			        preparedStatement.setString(11, textField_22.getText() + "-" + textField_23.getText() + "-" + textField_24.getText());//jaiotze data
+			        preparedStatement.setString(12, textField_25.getText());//lan postua
+	 
+			        // Ejecutar la consulta SQL
+			        int rowsAffected = preparedStatement.executeUpdate();
+			        
+			        if (rowsAffected > 0) {
+			            JOptionPane.showMessageDialog(null, "DATUAK GORDE DIRA.", "Verificación", JOptionPane.INFORMATION_MESSAGE);
+			        }
+	 
+			    } catch (SQLException ex) {
+			        ex.printStackTrace();
+			    } finally {
+			        // Cerrar la conexión y el preparedStatement en el bloque finally
+			        try {
+			            if (preparedStatement != null) {
+			                preparedStatement.close();
+			            }
+			            if (conexion != null) {
+			                conexion.close();
+			            }
+			        } catch (SQLException ex) {
+			            ex.printStackTrace();
+			        }
+			    }
+			}
+		});
 		btnNewButton_4.setBounds(20, 210, 93, 21);
 		panel_2.add(btnNewButton_4);
 		
@@ -497,10 +608,72 @@ public class AltakAdmin extends JFrame {
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(new Color(128, 255, 255));
-		panel_4.setBounds(235, 10, 207, 172);
+		panel_4.setBounds(235, 10, 207, 190);
 		panel_3.add(panel_4);
+		panel_4.setLayout(null);
+		
+		JLabel lblNewLabel_35 = new JLabel("XL");
+		lblNewLabel_35.setBounds(27, 167, 45, 13);
+		panel_4.add(lblNewLabel_35);
+		
+		textField_36 = new JTextField();
+		textField_36.setBounds(97, 164, 38, 19);
+		panel_4.add(textField_36);
+		textField_36.setColumns(10);
 		
 		JButton btnNewButton_2 = new JButton("Alta eman");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    Connection conexion = null;
+			    PreparedStatement preparedStatement = null;
+	 
+			    try {
+			        // Establecer la conexión
+			        conexion = DriverManager.getConnection(URL, USER, PASSWORD);
+	 
+			        // Crear la consulta SQL con un PreparedStatement para evitar inyecciones SQL
+			        String sql = "INSERT INTO langileak (nan, izena, abizena, herria, helbidea, kontuKorrontea, korreoa, telefonoa, erabiltzailea, pasahitza, jaiotzeData, lanPostua) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			        
+			        preparedStatement = conexion.prepareStatement(sql);
+			        
+			        // Establecer los parámetros de la consulta
+			        preparedStatement.setString(1, textField_12.getText());//nan
+			        preparedStatement.setString(2, textField_13.getText());//izena
+			        preparedStatement.setString(3, textField_14.getText());//abizena
+			        preparedStatement.setString(4, textField_15.getText());//herria
+			        preparedStatement.setString(5, textField_16.getText());//helbidea
+			        preparedStatement.setString(6, textField_17.getText());//kontu korrontea
+			        preparedStatement.setString(7, textField_18.getText());//korreoa
+			        preparedStatement.setString(8, textField_19.getText());//telefonoa
+			        preparedStatement.setString(9, textField_20.getText());//erabiltzailea
+			        preparedStatement.setString(10, textField_21.getText());//pasahitza
+			        preparedStatement.setString(11, textField_22.getText() + "-" + textField_23.getText() + "-" + textField_24.getText());//jaiotze data
+			        preparedStatement.setString(12, textField_25.getText());//lan postua
+	 
+			        // Ejecutar la consulta SQL
+			        int rowsAffected = preparedStatement.executeUpdate();
+			        
+			        if (rowsAffected > 0) {
+			            JOptionPane.showMessageDialog(null, "DATUAK GORDE DIRA.", "Verificación", JOptionPane.INFORMATION_MESSAGE);
+			        }
+	 
+			    } catch (SQLException ex) {
+			        ex.printStackTrace();
+			    } finally {
+			        // Cerrar la conexión y el preparedStatement en el bloque finally
+			        try {
+			            if (preparedStatement != null) {
+			                preparedStatement.close();
+			            }
+			            if (conexion != null) {
+			                conexion.close();
+			            }
+			        } catch (SQLException ex) {
+			            ex.printStackTrace();
+			        }
+			    }
+			}
+		});
 		btnNewButton_2.setBounds(20, 210, 93, 21);
 		panel_3.add(btnNewButton_2);
 		

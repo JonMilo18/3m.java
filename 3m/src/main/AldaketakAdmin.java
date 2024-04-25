@@ -386,83 +386,10 @@ public class AldaketakAdmin extends JFrame {
 		panel_2.add(textField_51);
 		
 		JButton btnNewButton_2 = new JButton("Bilatu");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-                // IDa lortu
-                int id = Integer.parseInt(textField_39.getText());
-                // Produktuaren datuak bilatu
-                try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-                    String query = "SELECT * FROM bezeroak WHERE id = ?";
-                    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                        preparedStatement.setInt(1, id);
-                        try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                            if (resultSet.next()) {
-                                // Emaitzak erakutsi
-                                textField_38.setText(resultSet.getString("izena"));
-                                textField_51.setText(resultSet.getString("izena"));
-                                textField_37.setText(resultSet.getString("abizena"));
-                                textField_50.setText(resultSet.getString("abizena"));
-                                textField_34.setText(resultSet.getString("jaiotzeData"));
-                                textField_47.setText(resultSet.getString("jaiotzeData"));
-                                textField_33.setText(resultSet.getString("herria"));
-                                textField_46.setText(resultSet.getString("herria"));
-                                textField_32.setText(resultSet.getString("helbidea"));
-                                textField_45.setText(resultSet.getString("helbidea"));
-                                textField_31.setText(resultSet.getString("korreoa"));
-                                textField_44.setText(resultSet.getString("korreoa"));
-                                textField_30.setText(resultSet.getString("telefonoa"));
-                                textField_43.setText(resultSet.getString("telefonoa"));
-                                textField_29.setText(resultSet.getString("erabiltzailea"));
-                                textField_42.setText(resultSet.getString("erabiltzailea"));
-                                textField_28.setText(resultSet.getString("pasahitza"));
-                                textField_41.setText(resultSet.getString("pasahitza"));
-                                textField_25.setText(resultSet.getString("kontuKorrontea"));
-                                textField_40.setText(resultSet.getString("kontuKorrontea"));
-                                
-                            }
-                        }
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
-		});
 		btnNewButton_2.setBounds(200, 48, 76, 21);
 		panel_2.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Gorde");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			    try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-			        String updateQuery = "UPDATE bezeroak SET izena = ?, abizena = ?, jaiotzeData = ?, herria = ?, helbidea = ?, korreoa = ?, telefonoa = ?, erabiltzailea = ?, pasahitza = ?, kontuKorrontea = ? WHERE id = ?";
-			        try (PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
-			            updateStatement.setString(1, textField_51.getText());
-			            updateStatement.setString(2, textField_50.getText());
-			            updateStatement.setString(3, textField_47.getText());
-			            updateStatement.setString(4, textField_46.getText());
-			            updateStatement.setString(5, textField_45.getText());
-			            updateStatement.setString(6, textField_44.getText());
-			            updateStatement.setString(7, textField_43.getText());
-			            updateStatement.setString(8, textField_42.getText());
-			            updateStatement.setString(9, textField_41.getText());
-			            updateStatement.setString(10, textField_40.getText());
-			            updateStatement.setString(11, textField_39.getText());
-			            
-			            
-			            int affectedRows = updateStatement.executeUpdate();
-			            if (affectedRows > 0) {
-			                JOptionPane.showMessageDialog(null, "Bezeroaren datuak eguneratu dira.", "Verificación", JOptionPane.INFORMATION_MESSAGE);
-			            } else {
-			                JOptionPane.showMessageDialog(null, "Errorea bezeroaren datuak eguneratzean.", "Verificación", JOptionPane.ERROR_MESSAGE);
-			            }
-			        }
-			    } catch (SQLException ex) {
-			        JOptionPane.showMessageDialog(null, "Errorea bezeroaren datuak eguneratzean: " + ex.getMessage(), "Errorea", JOptionPane.ERROR_MESSAGE);
-			        ex.printStackTrace();
-			    }
-			}
- 
-		});
 		btnNewButton_3.setBounds(487, 48, 96, 21);
 		panel_2.add(btnNewButton_3);
 		
@@ -747,89 +674,10 @@ public class AldaketakAdmin extends JFrame {
 		panel_3.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Bilatu");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				{
-	                // IDa lortu
-	                int id = Integer.parseInt(textField_11.getText());
-	                // Produktuaren datuak bilatu
-	                try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-	                    String query = "SELECT * FROM langileak WHERE id = ?";
-	                    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-	                        preparedStatement.setInt(1, id);
-	                        try (ResultSet resultSet = preparedStatement.executeQuery()) {
-	                            if (resultSet.next()) {
-	                                // Emaitzak erakutsi
-	                            	textField_12.setText(resultSet.getString("nan"));
-	                                textField_26.setText(resultSet.getString("nan"));
-	                                textField_10.setText(resultSet.getString("izena"));
-	                                textField_24.setText(resultSet.getString("izena"));
-	                                textField_9.setText(resultSet.getString("abizena"));
-	                                textField_23.setText(resultSet.getString("abizena"));
-	                                textField_6.setText(resultSet.getString("jaiotzeData"));
-	                                textField_20.setText(resultSet.getString("jaiotzeData"));
-	                                textField_7.setText(resultSet.getString("herria"));
-	                                textField_8.setText(resultSet.getString("herria"));
-	                                textField_5.setText(resultSet.getString("helbidea"));
-	                                textField_19.setText(resultSet.getString("helbidea"));
-	                                textField_4.setText(resultSet.getString("korreoa"));
-	                                textField_18.setText(resultSet.getString("korreoa"));
-	                                textField_3.setText(resultSet.getString("telefonoa"));
-	                                textField_17.setText(resultSet.getString("telefonoa"));
-	                                textField_2.setText(resultSet.getString("erabiltzailea"));
-	                                textField_16.setText(resultSet.getString("erabiltzailea"));
-	                                textField_1.setText(resultSet.getString("pasahitza"));
-	                                textField_15.setText(resultSet.getString("pasahitza"));
-	                                textField.setText(resultSet.getString("kontuKorrontea"));
-	                                textField_14.setText(resultSet.getString("kontuKorrontea"));
-	                                textField_13.setText(resultSet.getString("lanPostua"));
-	                                textField_27.setText(resultSet.getString("lanPostua"));
-	                                
-	                            }
-	                        }
-	                    }
-	                } catch (SQLException ex) {
-	                    ex.printStackTrace();
-	                }
-	            }
-			}
-		});
 		btnNewButton.setBounds(281, 33, 85, 21);
 		panel_3.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Gorde");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			    try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-			        String updateQuery = "UPDATE langileak SET nan = ?, izena = ?, abizena = ?, jaiotzeData = ?, herria = ?, helbidea = ?, korreoa = ?, telefonoa = ?, erabiltzailea = ?, pasahitza = ?, kontuKorrontea = ?, lanPostua = ? WHERE id = ?";
-			        try (PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
-			            updateStatement.setString(1, textField_26.getText());
-			            updateStatement.setString(2, textField_24.getText());
-			            updateStatement.setString(3, textField_23.getText());
-			            updateStatement.setString(4, textField_20.getText());
-			            updateStatement.setString(5, textField_8.getText());
-			            updateStatement.setString(6, textField_19.getText());
-			            updateStatement.setString(7, textField_18.getText());
-			            updateStatement.setString(8, textField_17.getText());
-			            updateStatement.setString(9, textField_16.getText());
-			            updateStatement.setString(10, textField_15.getText());
-			            updateStatement.setString(11, textField_14.getText());
-			            updateStatement.setString(12, textField_27.getText());
-			            updateStatement.setString(13, textField_11.getText());
-			            
-			            int affectedRows = updateStatement.executeUpdate();
-			            if (affectedRows > 0) {
-			                JOptionPane.showMessageDialog(null, "Bezeroaren datuak eguneratu dira.", "Verificación", JOptionPane.INFORMATION_MESSAGE);
-			            } else {
-			                JOptionPane.showMessageDialog(null, "Errorea bezeroaren datuak eguneratzean.", "Verificación", JOptionPane.ERROR_MESSAGE);
-			            }
-			        }
-			    } catch (SQLException ex) {
-			        JOptionPane.showMessageDialog(null, "Errorea bezeroaren datuak eguneratzean: " + ex.getMessage(), "Errorea", JOptionPane.ERROR_MESSAGE);
-			        ex.printStackTrace();
-			    }
-			}
-		});
 		btnNewButton_1.setBounds(698, 33, 85, 21);
 		panel_3.add(btnNewButton_1);
 		

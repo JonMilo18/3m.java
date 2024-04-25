@@ -61,6 +61,8 @@ public class MenuAdmin extends JFrame {
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				BajakAdmin oforma = new BajakAdmin();
+                oforma.setVisible(true);
 			}
 		});
 		btnNewButton_1.setBounds(412, 328, 413, 310);

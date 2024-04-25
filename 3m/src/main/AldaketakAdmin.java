@@ -1,6 +1,12 @@
 package main;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -8,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTabbedPane;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -15,6 +22,9 @@ import javax.swing.JButton;
 public class AldaketakAdmin extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	protected static final String URL = "jdbc:mysql://localhost:3306/3m";
+    protected static final String USER = "root";
+    protected static final String PASSWORD = "1WMG2023";
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -908,6 +918,37 @@ public class AldaketakAdmin extends JFrame {
 		JButton btnNewButton_5 = new JButton("Gorde");
 		btnNewButton_5.setBounds(432, 37, 96, 21);
 		panel_1.add(btnNewButton_5);
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+			        String updateQuery = "UPDATE produktuak SET izena = ?, kategoria = ?, kolorea = ?, prezioa = ?, kopurua = ?, kopuruaxs = ?, kopuruas = ?, kopuruam = ?, kopurual = ?, kopuruaxl = ? WHERE id = ?";
+			        try (PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
+			            updateStatement.setString(1, textField_73.getText());
+			            updateStatement.setString(2, textField_71.getText());
+			            updateStatement.setString(3, textField_70.getText());
+			            updateStatement.setString(4, textField_69.getText());
+			            updateStatement.setString(5, textField_68.getText());
+			            updateStatement.setString(6, textField_67.getText());
+			            updateStatement.setString(7, textField_66.getText());
+			            updateStatement.setString(8, textField_65.getText());
+			            updateStatement.setString(9, textField_64.getText());
+			            updateStatement.setString(10, textField_63.getText());
+			            updateStatement.setString(11, textField_61.getText());
+			            
+			            
+			            int affectedRows = updateStatement.executeUpdate();
+			            if (affectedRows > 0) {
+			                JOptionPane.showMessageDialog(null, "Bezeroaren datuak eguneratu dira.", "Verificación", JOptionPane.INFORMATION_MESSAGE);
+			            } else {
+			                JOptionPane.showMessageDialog(null, "Errorea bezeroaren datuak eguneratzean.", "Verificación", JOptionPane.ERROR_MESSAGE);
+			            }
+			        }
+			    } catch (SQLException ex) {
+			        JOptionPane.showMessageDialog(null, "Errorea bezeroaren datuak eguneratzean: " + ex.getMessage(), "Errorea", JOptionPane.ERROR_MESSAGE);
+			        ex.printStackTrace();
+			    }
+			}
+		});
 	}
 
 	private static class __Tmp {

@@ -386,6 +386,47 @@ public class AldaketakAdmin extends JFrame {
 		panel_2.add(textField_51);
 		
 		JButton btnNewButton_2 = new JButton("Bilatu");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+                // IDa lortu
+                int id = Integer.parseInt(textField_39.getText());
+                // Produktuaren datuak bilatu
+                try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+                    String query = "SELECT * FROM bezeroak WHERE id = ?";
+                    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                        preparedStatement.setInt(1, id);
+                        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                            if (resultSet.next()) {
+                                // Emaitzak erakutsi
+                                textField_38.setText(resultSet.getString("izena"));
+                                textField_51.setText(resultSet.getString("izena"));
+                                textField_37.setText(resultSet.getString("abizena"));
+                                textField_50.setText(resultSet.getString("abizena"));
+                                textField_34.setText(resultSet.getString("jaiotzeData"));
+                                textField_47.setText(resultSet.getString("jaiotzeData"));
+                                textField_33.setText(resultSet.getString("herria"));
+                                textField_46.setText(resultSet.getString("herria"));
+                                textField_32.setText(resultSet.getString("helbidea"));
+                                textField_45.setText(resultSet.getString("helbidea"));
+                                textField_31.setText(resultSet.getString("korreoa"));
+                                textField_44.setText(resultSet.getString("korreoa"));
+                                textField_30.setText(resultSet.getString("telefonoa"));
+                                textField_43.setText(resultSet.getString("telefonoa"));
+                                textField_29.setText(resultSet.getString("erabiltzailea"));
+                                textField_42.setText(resultSet.getString("erabiltzailea"));
+                                textField_28.setText(resultSet.getString("pasahitza"));
+                                textField_41.setText(resultSet.getString("pasahitza"));
+                                textField_25.setText(resultSet.getString("kontuKorrontea"));
+                                textField_40.setText(resultSet.getString("kontuKorrontea"));
+                                
+                            }
+                        }
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+		});
 		btnNewButton_2.setBounds(200, 48, 76, 21);
 		panel_2.add(btnNewButton_2);
 		

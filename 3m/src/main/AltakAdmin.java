@@ -18,6 +18,9 @@ import java.awt.event.ActionEvent;
 public class AltakAdmin extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	protected static final String URL = "jdbc:mysql://localhost:3306/3m";
+    protected static final String USER = "root";
+    protected static final String PASSWORD = "1WMG2023";
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -204,6 +207,56 @@ public class AltakAdmin extends JFrame {
 		textField_11.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Alta eman");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    Connection conexion = null;
+			    PreparedStatement preparedStatement = null;
+ 
+			    try {
+			        // Establecer la conexión
+			        conexion = DriverManager.getConnection(URL, USER, PASSWORD);
+ 
+			        // Crear la consulta SQL con un PreparedStatement para evitar inyecciones SQL
+			        String sql = "INSERT INTO Bezeroak (izena, abizena, helbidea, korreoa, telefonoa, kontuKorrontea, erabiltzailea, pasahitza, jaiotzeData, lanPostua) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			        
+			        preparedStatement = conexion.prepareStatement(sql);
+			        
+			        // Establecer los parámetros de la consulta
+			        preparedStatement.setString(1, textField.getText());
+			        preparedStatement.setString(2, textField_1.getText());
+			        preparedStatement.setString(3, textField_2.getText());
+			        preparedStatement.setString(4, textField_5.getText());
+			        preparedStatement.setString(5, textField_6.getText());
+			        preparedStatement.setString(6, textField_7.getText());
+			        preparedStatement.setString(7, textField_8.getText());
+			        preparedStatement.setString(8, textField_9.getText());
+			        preparedStatement.setString(9, textField_10.getText());
+			        preparedStatement.setString(10, textField_11.getText());
+ 
+			        // Ejecutar la consulta SQL
+			        int rowsAffected = preparedStatement.executeUpdate();
+			        
+			        if (rowsAffected > 0) {
+			            JOptionPane.showMessageDialog(null, "DATUAK GORDE DIRA.", "Verificación", JOptionPane.INFORMATION_MESSAGE);
+			        }
+ 
+			    } catch (SQLException ex) {
+			        ex.printStackTrace();
+			    } finally {
+			        // Cerrar la conexión y el preparedStatement en el bloque finally
+			        try {
+			            if (preparedStatement != null) {
+			                preparedStatement.close();
+			            }
+			            if (conexion != null) {
+			                conexion.close();
+			            }
+			        } catch (SQLException ex) {
+			            ex.printStackTrace();
+			        }
+			    }
+			}
+		});
 		btnNewButton.setBounds(20, 210, 93, 21);
 		panel_1.add(btnNewButton);
 		

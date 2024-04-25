@@ -798,6 +798,38 @@ public class AldaketakAdmin extends JFrame {
 		panel_3.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Gorde");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+			        String updateQuery = "UPDATE langileak SET nan = ?, izena = ?, abizena = ?, jaiotzeData = ?, herria = ?, helbidea = ?, korreoa = ?, telefonoa = ?, erabiltzailea = ?, pasahitza = ?, kontuKorrontea = ?, lanPostua = ? WHERE id = ?";
+			        try (PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
+			            updateStatement.setString(1, textField_26.getText());
+			            updateStatement.setString(2, textField_24.getText());
+			            updateStatement.setString(3, textField_23.getText());
+			            updateStatement.setString(4, textField_20.getText());
+			            updateStatement.setString(5, textField_8.getText());
+			            updateStatement.setString(6, textField_19.getText());
+			            updateStatement.setString(7, textField_18.getText());
+			            updateStatement.setString(8, textField_17.getText());
+			            updateStatement.setString(9, textField_16.getText());
+			            updateStatement.setString(10, textField_15.getText());
+			            updateStatement.setString(11, textField_14.getText());
+			            updateStatement.setString(12, textField_27.getText());
+			            updateStatement.setString(13, textField_11.getText());
+			            
+			            int affectedRows = updateStatement.executeUpdate();
+			            if (affectedRows > 0) {
+			                JOptionPane.showMessageDialog(null, "Bezeroaren datuak eguneratu dira.", "Verificación", JOptionPane.INFORMATION_MESSAGE);
+			            } else {
+			                JOptionPane.showMessageDialog(null, "Errorea bezeroaren datuak eguneratzean.", "Verificación", JOptionPane.ERROR_MESSAGE);
+			            }
+			        }
+			    } catch (SQLException ex) {
+			        JOptionPane.showMessageDialog(null, "Errorea bezeroaren datuak eguneratzean: " + ex.getMessage(), "Errorea", JOptionPane.ERROR_MESSAGE);
+			        ex.printStackTrace();
+			    }
+			}
+		});
 		btnNewButton_1.setBounds(698, 33, 85, 21);
 		panel_3.add(btnNewButton_1);
 		

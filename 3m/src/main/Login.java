@@ -92,6 +92,35 @@ public class Login extends JFrame {
 		});
 		btnNewButton.setBounds(534, 553, 155, 36);
 		contentPane.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String erabiltzailea = textField.getText();
+                String pasahitza = new String(passwordField.getPassword());
+ 
+                try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+                    String query = "SELECT * FROM langileak WHERE erabiltzailea = ? AND pasahitza = ?";
+                    try (PreparedStatement statement = connection.prepareStatement(query)) {
+                        statement.setString(1, erabiltzailea);
+                        statement.setString(2, pasahitza);
+ 
+                        ResultSet resultSet = statement.executeQuery();
+ 
+                        if (resultSet.next()) {
+                            // Credenciales correctas
+                            MenuAdmin oforma = new MenuAdmin();
+                            oforma.setVisible(true);
+                            dispose();  // Cierra la ventana de login
+                        } else {
+                            // Credenciales incorrectas
+                            JOptionPane.showMessageDialog(null, "Erabiltzailea edo pasahitza okerrak.", "Errorea", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Errorea datu basearekin konexioa egiterakoan: " + ex.getMessage(), "Errorea", JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace();
+                }
+            }
+        });
 		
 		lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Jon\\Downloads\\3M (1).png"));

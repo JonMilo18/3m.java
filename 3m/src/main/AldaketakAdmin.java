@@ -431,6 +431,38 @@ public class AldaketakAdmin extends JFrame {
 		panel_2.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Gorde");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+			        String updateQuery = "UPDATE bezeroak SET izena = ?, abizena = ?, jaiotzeData = ?, herria = ?, helbidea = ?, korreoa = ?, telefonoa = ?, erabiltzailea = ?, pasahitza = ?, kontuKorrontea = ? WHERE id = ?";
+			        try (PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
+			            updateStatement.setString(1, textField_51.getText());
+			            updateStatement.setString(2, textField_50.getText());
+			            updateStatement.setString(3, textField_47.getText());
+			            updateStatement.setString(4, textField_46.getText());
+			            updateStatement.setString(5, textField_45.getText());
+			            updateStatement.setString(6, textField_44.getText());
+			            updateStatement.setString(7, textField_43.getText());
+			            updateStatement.setString(8, textField_42.getText());
+			            updateStatement.setString(9, textField_41.getText());
+			            updateStatement.setString(10, textField_40.getText());
+			            updateStatement.setString(11, textField_39.getText());
+			            
+			            
+			            int affectedRows = updateStatement.executeUpdate();
+			            if (affectedRows > 0) {
+			                JOptionPane.showMessageDialog(null, "Bezeroaren datuak eguneratu dira.", "Verificación", JOptionPane.INFORMATION_MESSAGE);
+			            } else {
+			                JOptionPane.showMessageDialog(null, "Errorea bezeroaren datuak eguneratzean.", "Verificación", JOptionPane.ERROR_MESSAGE);
+			            }
+			        }
+			    } catch (SQLException ex) {
+			        JOptionPane.showMessageDialog(null, "Errorea bezeroaren datuak eguneratzean: " + ex.getMessage(), "Errorea", JOptionPane.ERROR_MESSAGE);
+			        ex.printStackTrace();
+			    }
+			}
+ 
+		});
 		btnNewButton_3.setBounds(487, 48, 96, 21);
 		panel_2.add(btnNewButton_3);
 		

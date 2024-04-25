@@ -121,6 +121,7 @@ public class AldaketakAdmin extends JFrame {
 	 * Create the frame.
 	 */
 	public AldaketakAdmin() {
+		setTitle("3M|AldaketakADM");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1284, 682);
 		contentPane = new JPanel();

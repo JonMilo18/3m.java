@@ -87,6 +87,12 @@ public class MenuAdmin extends JFrame {
 		
 		JButton btnNewButton_4 = new JButton("Kontsultak");
 		btnNewButton_4.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KontsultakAdmin oforma = new KontsultakAdmin();
+                oforma.setVisible(true);
+			}
+		});
 		btnNewButton_4.setBounds(605, 0, 595, 326);
 		contentPane.add(btnNewButton_4);
 	}

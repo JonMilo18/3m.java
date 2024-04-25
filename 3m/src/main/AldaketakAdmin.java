@@ -1136,13 +1136,13 @@ public class AldaketakAdmin extends JFrame {
 			            
 			            int affectedRows = updateStatement.executeUpdate();
 			            if (affectedRows > 0) {
-			                JOptionPane.showMessageDialog(null, "Bezeroaren datuak eguneratu dira.", "Verificación", JOptionPane.INFORMATION_MESSAGE);
+			                JOptionPane.showMessageDialog(null, "Produktuen datuak eguneratu dira.", "Verificación", JOptionPane.INFORMATION_MESSAGE);
 			            } else {
-			                JOptionPane.showMessageDialog(null, "Errorea bezeroaren datuak eguneratzean.", "Verificación", JOptionPane.ERROR_MESSAGE);
+			                JOptionPane.showMessageDialog(null, "Errorea produktuen datuak eguneratzean.", "Verificación", JOptionPane.ERROR_MESSAGE);
 			            }
 			        }
 			    } catch (SQLException ex) {
-			        JOptionPane.showMessageDialog(null, "Errorea bezeroaren datuak eguneratzean: " + ex.getMessage(), "Errorea", JOptionPane.ERROR_MESSAGE);
+			        JOptionPane.showMessageDialog(null, "Errorea produktuen datuak eguneratzean: " + ex.getMessage(), "Errorea", JOptionPane.ERROR_MESSAGE);
 			        ex.printStackTrace();
 			    }
 			}

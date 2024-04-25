@@ -914,6 +914,51 @@ public class AldaketakAdmin extends JFrame {
 		JButton btnNewButton_4 = new JButton("Bilatu");
 		btnNewButton_4.setBounds(189, 37, 78, 21);
 		panel_1.add(btnNewButton_4);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				{
+	                // IDa lortu
+	                int id = Integer.parseInt(textField_61.getText());
+	                // Produktuaren datuak bilatu
+	                try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+	                    String query = "SELECT * FROM produktuak WHERE id = ?";
+	                    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+	                        preparedStatement.setInt(1, id);
+	                        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+	                            if (resultSet.next()) {
+	                                // Emaitzak erakutsi
+	                         
+	                                textField_62.setText(resultSet.getString("izena"));
+	                                textField_73.setText(resultSet.getString("izena"));
+	                                textField_60.setText(resultSet.getString("kategoria"));
+	                                textField_71.setText(resultSet.getString("kategoria"));
+	                                textField_59.setText(resultSet.getString("kolorea"));
+	                                textField_70.setText(resultSet.getString("kolorea"));
+	                                textField_58.setText(resultSet.getString("prezioa"));
+	                                textField_69.setText(resultSet.getString("prezioa"));
+	                                textField_57.setText(resultSet.getString("kopurua"));
+	                                textField_68.setText(resultSet.getString("kopurua"));
+	                                textField_56.setText(resultSet.getString("kopuruaxs"));
+	                                textField_67.setText(resultSet.getString("kopuruaxs"));
+	                                textField_55.setText(resultSet.getString("kopuruas"));
+	                                textField_66.setText(resultSet.getString("kopuruas"));
+	                                textField_54.setText(resultSet.getString("kopuruam"));
+	                                textField_65.setText(resultSet.getString("kopuruam"));
+	                                textField_53.setText(resultSet.getString("kopurual"));
+	                                textField_64.setText(resultSet.getString("kopurual"));
+	                                textField_52.setText(resultSet.getString("kopuruaxl"));
+	                                textField_63.setText(resultSet.getString("kopuruaxl"));
+	                            
+	                                
+	                            }
+	                        }
+	                    }
+	                } catch (SQLException ex) {
+	                    ex.printStackTrace();
+	                }
+	            }
+			}
+		});
 		
 		JButton btnNewButton_5 = new JButton("Gorde");
 		btnNewButton_5.setBounds(432, 37, 96, 21);

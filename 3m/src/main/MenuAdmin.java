@@ -70,6 +70,12 @@ public class MenuAdmin extends JFrame {
 		
 		JButton btnNewButton_2 = new JButton("Aldaketak");
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AldaketakAdmin oforma = new AldaketakAdmin();
+                oforma.setVisible(true);
+			}
+		});
 		btnNewButton_2.setBounds(821, 328, 379, 310);
 		contentPane.add(btnNewButton_2);
 		

@@ -73,7 +73,18 @@ public class MenuB extends JFrame {
 			}
 		});
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_2.setBounds(0, 305, 950, 294);
+		btnNewButton_2.setBounds(478, 305, 472, 294);
 		contentPane.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("Zereginak");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ZereginakB oforma = new ZereginakB();
+                oforma.setVisible(true);
+			}
+		});
+		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnNewButton_3.setBounds(0, 305, 485, 308);
+		contentPane.add(btnNewButton_3);
 	}
 }

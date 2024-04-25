@@ -98,6 +98,21 @@ public class BajakAdmin extends JFrame {
 		JButton btnNewButton_1 = new JButton("Ezabatu");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int id = Integer.parseInt(textField.getText());
+                // Produktua ezabatu
+                try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+                    String query = "DELETE FROM bezeroak WHERE id = ?";
+                    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                        preparedStatement.setInt(1, id);
+                        preparedStatement.executeUpdate();
+
+                        // Erabiltzaileari mezu bat erakutsi
+                      
+                        System.out.println("Bezeroa ezabatu da");
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
 			}
 		});
 		btnNewButton_1.setBounds(289, 17, 72, 21);

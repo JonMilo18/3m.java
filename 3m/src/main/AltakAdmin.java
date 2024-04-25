@@ -63,6 +63,7 @@ public class AltakAdmin extends JFrame {
 	private JTextField textField_24;
 	private JTextField textField_25;
 	private JTextField textField_30;
+	private JTextField textField_36;
 
 	/**
 	 * Launch the application.
@@ -607,8 +608,18 @@ public class AltakAdmin extends JFrame {
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(new Color(128, 255, 255));
-		panel_4.setBounds(235, 10, 207, 172);
+		panel_4.setBounds(235, 10, 207, 190);
 		panel_3.add(panel_4);
+		panel_4.setLayout(null);
+		
+		JLabel lblNewLabel_35 = new JLabel("XL");
+		lblNewLabel_35.setBounds(27, 167, 45, 13);
+		panel_4.add(lblNewLabel_35);
+		
+		textField_36 = new JTextField();
+		textField_36.setBounds(97, 164, 38, 19);
+		panel_4.add(textField_36);
+		textField_36.setColumns(10);
 		
 		JButton btnNewButton_2 = new JButton("Alta eman");
 		btnNewButton_2.addActionListener(new ActionListener() {

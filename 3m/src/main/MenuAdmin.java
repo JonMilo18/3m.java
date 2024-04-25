@@ -80,6 +80,12 @@ public class MenuAdmin extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Langileen \r\negin \r\nbeharrekoak");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ZereginakAdmin oforma = new ZereginakAdmin();
+                oforma.setVisible(true);
+			}
+		});
 		btnNewButton_3.setToolTipText("\r\n");
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		btnNewButton_3.setBounds(0, 0, 610, 326);
